@@ -3,45 +3,45 @@ class RpdevicesController < ApplicationController
 
   # GET /rpdevices
   def index
-    @rpdevices = Rpdevice.all
+    rpdevices = Rpdevice.all
 
-    render json: @rpdevices
+    render json: rpdevices
   end
 
   # GET /rpdevices/1
   def show
-    render json: @rpdevice
+    render json: rpdevice
   end
 
   # POST /rpdevices
   def create
-    @rpdevice = Rpdevice.new(rpdevice_params)
+    rpdevice = Rpdevice.new(rpdevice_params)
 
-    if @rpdevice.save
-      render json: @rpdevice, status: :created, location: @rpdevice
+    if rpdevice.save
+      render json: rpdevice, status: :created, location: rpdevice
     else
-      render json: @rpdevice.errors, status: :unprocessable_entity
+      render json: rpdevice.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /rpdevices/1
   def update
-    if @rpdevice.update(rpdevice_params)
-      render json: @rpdevice
+    if rpdevice.update(rpdevice_params)
+      render json: rpdevice
     else
-      render json: @rpdevice.errors, status: :unprocessable_entity
+      render json: rpdevice.errors, status: :unprocessable_entity
     end
   end
 
   # DELETE /rpdevices/1
   def destroy
-    @rpdevice.destroy
+    rpdevice.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rpdevice
-      @rpdevice = Rpdevice.find(params[:id])
+      rpdevice = Rpdevice.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
