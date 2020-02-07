@@ -1,0 +1,2 @@
+class Rpdevice < ApplicationRecord
+end
