@@ -22,17 +22,24 @@ function getLocations() {
         locationCard.className = 'card';
         locationCard.innerHTML = `
         <p>${location.name}</p>
-        <button data-location-id="${location.id}">Add RP Devices</button>}
+        <button data-location-id="${location.id}">Add RP Devices</button>
         <ul id=location-card-ul-${location.id}>
         
         </ul>
         `;
-      });
-      locationContainer.append(locationCard);
-    });
 
-  // function clearForm() {
-  //   let locFormDiv = document.getElementById('location-form');
-  //   locFormDiv.innerHTML = '';
-  // }
+        location.rpdevices.forEach(rpdevice => {
+          const locationCardUl = locationCard.querySelector('ul');
+          const rpdeviceLi = document.createElement('li');
+          const removeButton = document.createElement('button');
+          removeButton.innerText = 'Remove';
+          removeButton.className = 'remove';
+          removeButton.dataset.rpdeviceId = rpdevice.id;
+          rpdeviceLi.innerText = `${rpdevice.hostname}`;
+          rpdeviceLi.append(removeButton);
+          locationCardUl.append(rpdeviceLi);
+          locationContainer.append(locationCard);
+        });
+      });
+    });
 }
