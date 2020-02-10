@@ -1,15 +1,34 @@
+const BASE_URL = 'http://localhost:3000';
 
-  const BASE_URL = "http://localhost:3000"
-  const LOCATIONS_URL = `${BASE_URL}/locations`
-  const RPDEVICES_URL = `${BASE_URL}/rpdevices`
-  const locationContainer = document.querySelector('#location-container')
-  const locations = []
+window.addEventListener('load', () => {
+  getLocations();
+  // attachClickToHadeviceLinks()
+});
 
-  window.addEventListener('load', () => {
-    getlocations()
-    attachClickToHadeviceLinks()
-  })
+function getLocations() {
+  // clearForm();
+  // let main = document.querySelector('#main');
+  // main.innerHTML = '';
 
-  
-    
-  
+  fetch(BASE_URL + '/locations')
+    .then(resp => resp.json())
+    .then(locations => {
+      locations.forEach(location => {
+        const locationCard = document.createElement('div');
+        locationCard.dataset.id = location.id;
+        locationCard.className = 'card';
+        locationCard.innerHTML = `
+        <p>${location.name}</p>
+        <button data-location-id="${location.id}">Add RP Devices</button>}
+        <ul id=location-card-ul-${location.id}>
+        
+        </ul>
+        `;
+      });
+    });
+
+  // function clearForm() {
+  //   let locFormDiv = document.getElementById('location-form');
+  //   locFormDiv.innerHTML = '';
+  // }
+}

@@ -51,7 +51,7 @@ button {
   border-radius: 10px;
 }
 
-button.release {
+button.remove {
   float: right;
   background-color: #e1332d;
 }
