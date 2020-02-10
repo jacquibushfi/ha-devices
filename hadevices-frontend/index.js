@@ -2,11 +2,9 @@ const BASE_URL = 'http://localhost:3000';
 
 window.addEventListener('load', () => {
   getLocations();
-  // attachClickToHadeviceLinks()
 });
 
 function getLocations() {
-  // clearForm();
   const locationContainer = document.querySelector('#location-container');
   let locations = [];
 
