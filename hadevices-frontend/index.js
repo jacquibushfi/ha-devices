@@ -7,13 +7,16 @@ window.addEventListener('load', () => {
 
 function getLocations() {
   // clearForm();
-  // let main = document.querySelector('#main');
-  // main.innerHTML = '';
+  const locationContainer = document.querySelector('#location-container');
+  let locations = [];
+
+  locationContainer.innerHTML = '';
 
   fetch(BASE_URL + '/locations')
     .then(resp => resp.json())
-    .then(locations => {
-      locations.forEach(location => {
+    .then(data => {
+      console.log(data);
+      data.forEach(location => {
         const locationCard = document.createElement('div');
         locationCard.dataset.id = location.id;
         locationCard.className = 'card';
@@ -25,6 +28,7 @@ function getLocations() {
         </ul>
         `;
       });
+      locationContainer.append(locationCard);
     });
 
   // function clearForm() {
