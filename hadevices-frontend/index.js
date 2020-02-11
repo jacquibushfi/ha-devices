@@ -3,14 +3,10 @@ const LOCATIONS_URL = `${BASE_URL}/locations`
 const DEVICES_URL = `${BASE_URL}/rpdevices`
 
 window.addEventListener('load', () => {
-  getLocations();
-  const locationContainer = document.querySelector('#location-container');
-  locationContainer.addEventListener("click", removeDevice);
+  getLocations()
+})
 
-});
-
-function removeDevice(id) {
-  console.log(id)
+function removeDevice() {
   fetch(`${DEVICES_URL}/${event.target.dataset.rpdeviceId}`, {
     method: "DELETE",
     headers: {
@@ -20,6 +16,41 @@ function removeDevice(id) {
   })
     .then(event.target.parentElement.remove())
 }
+
+function displayCreateForm(id) {
+  console.log(id)
+  let devFormDiv = document.getElementById("Device-form")
+  let html = `
+    <form onsubmit="createDev(); return false;">
+    <label>Hostname:</label>
+    <input type = "text" id="hostname"></br>
+    <label>Ip Address:</label>
+    <input type = "text" id="ipadd"></br>
+    <input type = "submit" value = "Create Device">
+  `
+  devFormDiv.innerHTML = html
+}
+
+function createDev(id) {
+  const dev = {
+    location_id: event.target.dataset.id,
+    hostname: document.getElementById('hostname').Value,
+    ipadd: document.getElementById('ipadd').value
+  }
+//   fetch(LOCATIONS_URL, {
+//     method: "POST"
+//     body: JSON.stringify(dev),
+//       'Content-Type': 'application/json',
+//       'Accept': 'application/json'
+//     }
+//   })
+//   .then(resp => resp.json())
+//   .then(dev => {
+//     let newDev = new RpDev(dev)
+//     document.querySelector('#location-container').innerHTML += ')
+//   })
+// }
+
 
 function getLocations() {
   fetch(BASE_URL + '/locations')
@@ -44,14 +75,13 @@ class Location {
 
   renderLocation() {
     const locationContainer = document.querySelector('#location-container');
-
     console.log(location);
     const locationCard = document.createElement('div');
     locationCard.dataset.id = this.id;
     locationCard.className = 'card';
     locationCard.innerHTML = `
         <p>${this.name}</p>
-        <button data-location-id="${this.id}" onclick="addDevice(${this.id})"; return false;>Add Device</button>
+        <button data-location-id="${this.id}" onclick="displayCreateForm(${this.id})"; return false;>Add Device</button>
         <ul id=location-card-ul-${this.id}> 
         </ul>
         `;
@@ -68,11 +98,18 @@ class Location {
       removeButton.innerText = 'Remove';
       removeButton.className = 'remove';
       removeButton.dataset.rpdeviceId = rpdevice.id;
-      // removeButton.onclick = 'removeDevice(${rpdevice.id})';
       rpdeviceLi.innerText = `${rpdevice.hostname}`;
       rpdeviceLi.append(removeButton);
       locationCardUl.append(rpdeviceLi);
       locationContainer.append(locationCard);
+      rpdeviceLi.addEventListener("click", removeDevice);
     })
   }
 }
+
+// class Rpdevice {
+//   constructor(rpdevice) {
+//     this.id = rpdevice.id;
+//     this.name = rpdevice.name;
+//     this.location_id = rpdevice.location_id;
+//   }
