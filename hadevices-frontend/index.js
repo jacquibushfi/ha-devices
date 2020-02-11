@@ -9,7 +9,6 @@ window.addEventListener('load', () => {
 
 });
 
-
 function removeDevice(id) {
   console.log(id)
   fetch(`${DEVICES_URL}/${event.target.dataset.rpdeviceId}`, {
@@ -21,7 +20,6 @@ function removeDevice(id) {
   })
     .then(event.target.parentElement.remove())
 }
-
 
 function getLocations() {
   fetch(BASE_URL + '/locations')
@@ -57,7 +55,7 @@ class Location {
         <ul id=location-card-ul-${this.id}> 
         </ul>
         `;
-    this.renderDevices(locationCard, locationContainer)
+    this.rpdevices.length > 0 ? this.renderDevices(locationCard, locationContainer) : locationContainer.append(locationCard)
   }
 
   renderDevices(locationCard, locationContainer) {
@@ -70,11 +68,11 @@ class Location {
       removeButton.innerText = 'Remove';
       removeButton.className = 'remove';
       removeButton.dataset.rpdeviceId = rpdevice.id;
-      removeButton.onclick = 'removeDevice(${rpdevice.id})';
+      // removeButton.onclick = 'removeDevice(${rpdevice.id})';
       rpdeviceLi.innerText = `${rpdevice.hostname}`;
       rpdeviceLi.append(removeButton);
       locationCardUl.append(rpdeviceLi);
       locationContainer.append(locationCard);
-    });
+    })
   }
 }
