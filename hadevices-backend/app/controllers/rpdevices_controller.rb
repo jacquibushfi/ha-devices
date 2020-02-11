@@ -35,13 +35,13 @@ class RpdevicesController < ApplicationController
 
   # DELETE /rpdevices/1
   def destroy
-    rpdevice.destroy
+    @rpdevice.destroy
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_rpdevice
-      rpdevice = Rpdevice.find(params[:id])
+      @rpdevice = Rpdevice.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

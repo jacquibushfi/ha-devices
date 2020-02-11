@@ -1,21 +1,27 @@
 const BASE_URL = 'http://localhost:3000';
+const LOCATIONS_URL = `${BASE_URL}/locations`
+const DEVICES_URL = `${BASE_URL}/rpdevices`
 
 window.addEventListener('load', () => {
   getLocations();
+  const locationContainer = document.querySelector('#location-container');
+  locationContainer.addEventListener("click", removeDevice);
+
 });
 
 
 function removeDevice(id) {
-  const config = {
-    method: "DELETE"
-  }
-  fetch(`${BASE_URL}/rpdevices/${event.target.dataset.rpdeviceId}`, config)
-    .then(resp => resp.json())
-    .then(data => {
-      event.target.parentElement.remove()
-      console.log(data)
-    })
+  console.log(id)
+  fetch(`${DEVICES_URL}/${event.target.dataset.rpdeviceId}`, {
+    method: "DELETE",
+    headers: {
+      'Content-type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+    .then(event.target.parentElement.remove())
 }
+
 
 function getLocations() {
   fetch(BASE_URL + '/locations')
