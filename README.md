@@ -1,2 +1,2 @@
 # ha-devices
-Listing of the Raspberry Pi devices for our Home Assistant and their location.
+Listing of the devices for our Home Assistant and their location.
