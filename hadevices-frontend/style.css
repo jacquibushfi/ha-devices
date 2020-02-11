@@ -4,7 +4,7 @@ body {
 }
 
 header {
-  background-color: #cc0066;
+  background-color: #ff80bf;
   margin: 0 auto;
   height: 50px;
 }
@@ -47,7 +47,7 @@ li {
 button {
   font-size: 0.65em;
   color: #fff;
-  background-color: #ff3399;
+  background-color: #ff0080;
   border-radius: 10px;
 }
 
