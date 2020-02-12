@@ -1,17 +1,15 @@
 const BASE_URL = 'http://localhost:3000'
 
-
-
 window.addEventListener('load', () => {
   getLocations()
 })
 
-function displayCreateForm() {
+function displayCreateForm(id) {
   let formdiv = document.querySelector('#device-form')
   let html = `
    <form onsubmit="createDev()"; return false;>
    <label>Location Id:</label>
-   <input type="text" id="location_id" name="location_id"></br>
+   <input type="text" id="location_id" name="location_id" value=${id}></br>
    <label>Hostname:</label>
    <input type="text" id="hostname" name="hostname"></br>
    <label>Ip Address:</label>
@@ -22,7 +20,6 @@ function displayCreateForm() {
  `
   formdiv.innerHTML = html
 }
-
 
 function createDev() {
   const dev = {
@@ -58,51 +55,6 @@ function removeDevice() {
     .then(event.target.parentElement.remove())
 }
 
-// function displayCreateForm2(id) {
-
-//   let devFormDiv = document.getElementById("device-form")
-//   let html = `
-//     <form onsubmit="createDev()";return false;>
-//     <label>Location Id:</label>
-//     <input type="text" name="location_id" value=${id}></br>
-//     <label>Hostname:</label>
-//     <input type="text" id="hostname"></br>
-//     <label>Ip Address:</label>
-//     <input type="text" id="ipadd"></br>
-//     <input type="submit" value="Create Device">
-//     </form>
-//   `
-//   devFormDiv.innerHTML = html
-// }
-
-
-
-// function createDev2() {
-//   e.preventDefault()
-//   const dev = {
-//     hostname: document.getElementById('hostname').value,
-//     ipadd: document.getElementById('ipadd').value,
-//     location_id: document.getElementById('location_id').value
-//   }
-
-//   fetch(BASE_URL + `/locations/${location_id}/rpdevices`), {
-//     method: "POST",
-//     body: JSON.stringify(dev),
-//     headers: {
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json'
-//     }
-//   }
-//     .then(resp => resp.json())
-//     .then(data => {
-//       let newDev = new RpDevice(data)
-//       const locationContainer = document.querySelector('#location-container');
-//       const locationCard = document.querySelector(`ul id=location-card-ul-${location_id}`)
-//       newDev.renderDevices(locationCard, locationContainer)
-//     })
-// }
-
-
 function getLocations() {
   fetch(BASE_URL + '/locations')
     .then(resp => resp.json())
@@ -116,7 +68,6 @@ function getLocations() {
       });
     });
 }
-
 
 class RpDevice {
   constructor(rpdevice) {
