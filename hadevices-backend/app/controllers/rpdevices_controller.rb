@@ -3,6 +3,7 @@ class RpdevicesController < ApplicationController
 
   # GET /rpdevices
   def index
+      #binding.pry
     rpdevices = Rpdevice.all
 
     render json: rpdevices
@@ -10,11 +11,13 @@ class RpdevicesController < ApplicationController
 
   # GET /rpdevices/1
   def show
+      #binding.pry
     render json: rpdevice
   end
 
   # POST /rpdevices
   def create
+      #binding.pry
     rpdevice = Rpdevice.new(rpdevice_params)
 
     if rpdevice.save
@@ -26,6 +29,7 @@ class RpdevicesController < ApplicationController
 
   # PATCH/PUT /rpdevices/1
   def update
+      #binding.pry
     if rpdevice.update(rpdevice_params)
       render json: rpdevice
     else

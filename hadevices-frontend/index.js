@@ -21,35 +21,45 @@ function displayCreateForm(id) {
   console.log(id)
   let devFormDiv = document.getElementById("Device-form")
   let html = `
-    <form onsubmit="createDev(); return false;">
+    <form onsubmit="createDev(e); return false;">
+    
+    <h3>Location id: ${id}</h3>
+
+    <input type="text" name="location_id" value=${id}></br>
     <label>Hostname:</label>
-    <input type = "text" id="hostname"></br>
+    <input type="text" id="hostname"></br>
     <label>Ip Address:</label>
-    <input type = "text" id="ipadd"></br>
-    <input type = "submit" value = "Create Device">
+    <input type="text" id="ipadd"></br>
+    <input type="submit" value="Create Device">
+    </form>
   `
   devFormDiv.innerHTML = html
 }
 
-function createDev(id) {
+function createDev(e) {
+  e.preventDefault()
   const dev = {
-    location_id: event.target.dataset.id,
-    hostname: document.getElementById('hostname').Value,
-    ipadd: document.getElementById('ipadd').value
+    hostname: document.getElementById('hostname').value,
+    ipadd: document.getElementById('ipadd').value,
+    location_id: document.getElementById('location_id').value,
   }
-//   fetch(LOCATIONS_URL, {
-//     method: "POST"
-//     body: JSON.stringify(dev),
-//       'Content-Type': 'application/json',
-//       'Accept': 'application/json'
-//     }
-//   })
-//   .then(resp => resp.json())
-//   .then(dev => {
-//     let newDev = new RpDev(dev)
-//     document.querySelector('#location-container').innerHTML += ')
-//   })
-// }
+  console.log(dev)
+  fetch(BASE_URL + `/locations/${location_id}/rpdevices`), {
+    method: "POST",
+    body: JSON.stringify(dev),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  }
+    .then(resp => resp.json())
+    .then(dev => {
+      let newDev = new RpDevice(dev)
+      const locationContainer = document.querySelector('#location-container');
+      const locationCard = document.querySelector(`ul id=location-card-ul-${location_id}`)
+      newDev.renderDevices(locationCard, locationContainer)
+    })
+}
 
 
 function getLocations() {
@@ -64,6 +74,15 @@ function getLocations() {
         newLocation.renderLocation();
       });
     });
+}
+
+
+class RpDevice {
+  constructor(rpdevice) {
+    this.id = rpdevice.id;
+    this.name = rpdevice.name;
+    this.location_id = rpdevice.location_id;
+  }
 }
 
 class Location {
@@ -81,7 +100,7 @@ class Location {
     locationCard.className = 'card';
     locationCard.innerHTML = `
         <p>${this.name}</p>
-        <button data-location-id="${this.id}" onclick="displayCreateForm(${this.id})"; return false;>Add Device</button>
+        <button data-location-id="${this.id}" onclick="displayCreateForm(${this.id})">Add Device</button>
         <ul id=location-card-ul-${this.id}> 
         </ul>
         `;
@@ -107,9 +126,3 @@ class Location {
   }
 }
 
-// class Rpdevice {
-//   constructor(rpdevice) {
-//     this.id = rpdevice.id;
-//     this.name = rpdevice.name;
-//     this.location_id = rpdevice.location_id;
-//   }

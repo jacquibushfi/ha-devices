@@ -3,6 +3,7 @@ class LocationsController < ApplicationController
 
   # GET /locations
   def index
+    #binding.pry
     locations = Location.all
 
     render json: locations
@@ -10,11 +11,13 @@ class LocationsController < ApplicationController
 
   # GET /locations/1
   def show
+    #binding.pry
     render json: location
   end
 
   # POST /locations
   def create
+      #binding.pry
     location = Location.new(location_params)
 
     if location.save
