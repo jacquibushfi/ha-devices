@@ -12,6 +12,7 @@ class LocationsController < ApplicationController
   # GET /locations/1
   def show
     #binding.pry
+    location = Location.find_by(id: params[:id])
     render json: location
   end
 

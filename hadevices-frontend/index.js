@@ -4,21 +4,26 @@ window.addEventListener('load', () => {
   getLocations()
 })
 
-function displayCreateForm(id) {
+function displayCreateForm() {
+  event.preventDefault()
+  let locid = event.target.dataset.locationId
   let formdiv = document.querySelector('#device-form')
-  let html = `
-   <form onsubmit="createDev()"; return false;>
-   <label>Location Id:</label>
-   <input type="text" id="location_id" name="location_id" value=${id}></br>
-   <label>Hostname:</label>
-   <input type="text" id="hostname" name="hostname"></br>
-   <label>Ip Address:</label>
-   <input type="text" id="ipadd" name="ipadd"></br>
-   
-   <input type="submit">
-   </form>
- `
-  formdiv.innerHTML = html
+
+  fetch(BASE_URL + `/locations/${locid}`)
+    .then(resp => resp.json())
+    .then(data => {
+      formdiv.innerHTML = `<h3>${data.name}</h3>`
+      let html = `
+      <form onsubmit="createDev(); return false">
+      
+      <input type="submit">
+      </form>
+      `
+
+
+
+      formdiv.innerHTML += html
+    })
 }
 
 function createDev() {
@@ -45,7 +50,7 @@ function createDev() {
 }
 
 function removeDevice() {
-  fetch(BASE_URL + `/locations/${event.target.locationCard.dataset.id}/rpdevices/${event.target.dataset.rpdeviceId}`, {
+  fetch(BASE_URL + `/locations/${event.target.dataset.locId}/rpdevices/${event.target.dataset.rpdeviceId}`, {
     method: "DELETE",
     headers: {
       'Content-type': 'application/json',
@@ -92,10 +97,10 @@ class Location {
     locationCard.className = 'card';
     locationCard.innerHTML = `
         <p>${this.name}</p>
-        <button data-location-id="${this.id}" onclick="displayCreateForm(${this.id})">Add Device</button>
-        <ul id=location-card-ul-${this.id}> 
-        </ul>
-        `;
+        <button data-location-id="${this.id}" onclick="displayCreateForm()">Add Device</button>
+        <ul id="location-card-ul-${this.id}"> 
+        </ul >
+      `;
     this.rpdevices.length > 0 ? this.renderDevices(locationCard, locationContainer) : locationContainer.append(locationCard)
   }
 
@@ -108,8 +113,9 @@ class Location {
       const removeButton = document.createElement('button');
       removeButton.innerText = 'Remove';
       removeButton.className = 'remove';
+      removeButton.dataset.locId = this.id;
       removeButton.dataset.rpdeviceId = rpdevice.id;
-      rpdeviceLi.innerText = `${rpdevice.hostname}`;
+      rpdeviceLi.innerText = `${rpdevice.hostname} `;
       rpdeviceLi.append(removeButton);
       locationCardUl.append(rpdeviceLi);
       locationContainer.append(locationCard);
