@@ -4,6 +4,43 @@ window.addEventListener('load', () => {
   getLocations()
 })
 
+function displayCreateLocForm() {
+  let formdiv = document.querySelector('#device-form')
+  formdiv.innerHTML = `<h3>New Location</h3>`
+  let html = `
+      <form>
+      <label>Location:</label>
+      <input type="text" id="name" name="name"></br>
+      <input type="submit">
+      </form>
+      `
+  formdiv.innerHTML += html
+  let form = document.querySelector('form')
+  form.addEventListener("submit", createLoc)
+}
+
+function createLoc() {
+  event.preventDefault()
+  const loc = {
+    name: event.target.name.value
+  }
+  fetch(BASE_URL + '/locations', {
+    method: "POST",
+    body: JSON.stringify(loc),
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  })
+    .then(resp => resp.json())
+    .then(data => {
+      let newLoc = new Location(data)
+      newLoc.renderLocation()
+      let formdiv = document.querySelector('#device-form')
+      formdiv.innerHTML = ''
+    })
+}
+
 function displayCreateDevForm() {
   let locid = event.target.dataset.locationId
   let formdiv = document.querySelector('#device-form')
@@ -50,8 +87,6 @@ function createDev() {
       let formdiv = document.querySelector('#device-form')
       formdiv.innerHTML = ''
     })
-
-    
 }
 
 function removeDevice() {
