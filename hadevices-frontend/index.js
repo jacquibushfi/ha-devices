@@ -92,7 +92,7 @@ class RpDevice {
     removeButton.className = 'remove';
     removeButton.dataset.locId = this.id;
     removeButton.dataset.rpdeviceId = this.id;
-    rpdeviceLi.innerText = this.hostname + "  (" + this.ipadd + ")";
+    rpdeviceLi.innerText = this.hostname + " (" + this.ipadd + ")";
     rpdeviceLi.append(removeButton);
     locationCardUl.append(rpdeviceLi);
     rpdeviceLi.addEventListener("click", removeDevice);
@@ -131,7 +131,7 @@ class Location {
       removeButton.className = 'remove';
       removeButton.dataset.locId = this.id;
       removeButton.dataset.rpdeviceId = rpdevice.id;
-      rpdeviceLi.innerText = `${rpdevice.hostname}  (${rpdevice.ipadd})`;
+      rpdeviceLi.innerText = `${rpdevice.hostname} (${rpdevice.ipadd})`;
       rpdeviceLi.append(removeButton);
       locationCardUl.append(rpdeviceLi);
       locationContainer.append(locationCard);
