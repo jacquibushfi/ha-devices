@@ -47,8 +47,8 @@ function createDev() {
     .then(data => {
       let newDev = new RpDevice(data)
       newDev.renderDevice()
-      let form = document.querySelector('form')
-      form.innerHTML = ''
+      let formdiv = document.querySelector('#device-form')
+      formdiv.innerHTML = ''
     })
 }
 
@@ -85,7 +85,6 @@ class RpDevice {
   }
 
   renderDevice() {
-    debugger
     const locationCardUl = document.getElementById(`location-card-ul-${this.location_id}`);
     const rpdeviceLi = document.createElement('li');
     const removeButton = document.createElement('button');
