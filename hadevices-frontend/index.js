@@ -4,7 +4,7 @@ window.addEventListener('load', () => {
   getLocations()
 })
 
-function displayCreateForm() {
+function displayCreateDevForm() {
   let locid = event.target.dataset.locationId
   let formdiv = document.querySelector('#device-form')
 
@@ -50,6 +50,8 @@ function createDev() {
       let formdiv = document.querySelector('#device-form')
       formdiv.innerHTML = ''
     })
+
+    
 }
 
 function removeDevice() {
@@ -113,7 +115,7 @@ class Location {
     locationCard.className = 'card';
     locationCard.innerHTML = `
         <p>${this.name}</p>
-        <button data-location-id="${this.id}" onclick="displayCreateForm()">Add Device</button>
+        <button data-location-id="${this.id}" onclick="displayCreateDevForm()">Add Device</button>
         <ul id="location-card-ul-${this.id}"> 
         </ul >
       `;
