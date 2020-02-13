@@ -53,13 +53,14 @@ function displayCreateDevForm() {
       <form>
       <input type="hidden" id="location_id" name="location_id" value=${data.id}></br>
       <label>Hostname:</label>
-      <input type="text" id="hostname" name="hostname"></br>
+      <input type="text" id="hostname" name="hostname" autofocus></br>
       <label>Ip Address:</label>
       <input type="text" id="ipadd" name="ipadd"></br>
       <input type="submit">
       </form>
       `
       formdiv.innerHTML += html
+      document.getElementById("hostname").focus();
       let form = document.querySelector('form')
       form.addEventListener("submit", createDev)
     })
@@ -150,7 +151,7 @@ class Location {
     locationCard.className = 'card';
     locationCard.innerHTML = `
         <p>${this.name}</p>
-        <button data-location-id="${this.id}" onclick="displayCreateDevForm()">Add Device</button>
+             <button data-location-id="${this.id}" onclick="displayCreateDevForm()">Add Device</button>
         <ul id="location-card-ul-${this.id}"> 
         </ul >
       `;
