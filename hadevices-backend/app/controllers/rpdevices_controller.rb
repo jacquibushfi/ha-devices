@@ -21,7 +21,7 @@ class RpdevicesController < ApplicationController
     rpdevice = Rpdevice.new(rpdevice_params)
 
     if rpdevice.save
-      render json: rpdevice, status: :created, location: rpdevice
+      render json: rpdevice
     else
       render json: rpdevice.errors, status: :unprocessable_entity
     end
@@ -50,6 +50,6 @@ class RpdevicesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def rpdevice_params
-      params.require(:rpdevice).permit(:hostname, :ipadd, :location_id)
+      params.require(:rpdevice).permit(:hostname, :ipadd, :location_id, :id)
     end
 end
