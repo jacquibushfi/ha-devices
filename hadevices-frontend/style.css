@@ -16,7 +16,7 @@ header h2 {
 
 main {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: auto;
   grid-template-rows: auto;
   grid-gap: 20px;
   padding-top: 10px;
@@ -26,7 +26,7 @@ main {
 div.card {
   background-color: #eeeeee;
   height: 250px;
-  width: 400px;
+  width: 350px;
   box-shadow: 10px 10px grey;
   padding: 10px;
   border-radius: 10px;
@@ -64,6 +64,6 @@ button.remove {
 
 @media only screen and (min-width: 850px) {
   main {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
   }
 }
