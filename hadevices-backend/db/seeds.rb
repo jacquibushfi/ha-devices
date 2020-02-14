@@ -1,7 +1,13 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+loc_a = Location.create(name: "Kitchen")
+loc_b = Location.create(name: "Master Bedrooom")
+loc_c = Location.create(name: "Back yard")
+loc_d = Location.create(name: "Living Room")
+
+dev_a = Rpdevice.create(hostname: "Ambient Lights", ipadd: "10.10.31.24", location_id: loc_a.id)
+dev_b = Rpdevice.create(hostname: "Sink Light", ipadd: "10.10.31.25", location_id: loc_a.id)
+dev_c = Rpdevice.create(hostname: "Humidifier", ipadd: "10.10.31.26", location_id: loc_b.id)
+dev_c = Rpdevice.create(hostname: "Ceiling Fan", ipadd: "10.10.31.28", location_id: loc_b.id)
+dev_e = Rpdevice.create(hostname: "Tree Lighting", ipadd: "10.10.31.45", location_id: loc_c.id)
+dev_f = Rpdevice.create(hostname: "Green House Temp", ipadd: "10.10.31.49", location_id: loc_c.id)
+dev_g = Rpdevice.create(hostname: "Entry Chandelier", ipadd: "10.10.31.38", location_id: loc_d.id)
+dev_h = Rpdevice.create(hostname: "LR Movement Sensor", ipadd: "10.10.31.39", location_id: loc_d.id)
