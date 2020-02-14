@@ -39,6 +39,7 @@ function createLoc() {
       let formdiv = document.querySelector('#device-form')
       formdiv.innerHTML = ''
     })
+    .catch(error => alert(error.message))
 }
 
 function displayCreateDevForm() {
@@ -64,6 +65,7 @@ function displayCreateDevForm() {
       let form = document.querySelector('form')
       form.addEventListener("submit", createDev)
     })
+    .catch(error => alert(error.message))
 }
 
 function createDev() {
@@ -88,6 +90,7 @@ function createDev() {
       let formdiv = document.querySelector('#device-form')
       formdiv.innerHTML = ''
     })
+    .catch(error => alert(error.message))
 }
 
 function removeDevice() {
@@ -99,6 +102,7 @@ function removeDevice() {
     }
   })
     .then(event.target.parentElement.remove())
+    .catch(error => alert(error.message))
 }
 
 function getLocations() {
@@ -110,8 +114,9 @@ function getLocations() {
       data.forEach(location => {
         let newLocation = new Location(location);
         newLocation.renderLocation();
-      });
-    });
+      })
+    })
+    .catch(error => alert(error.message))
 }
 
 class RpDevice {
