@@ -16,7 +16,7 @@ header h2 {
 
 main {
   display: grid;
-  grid-template-columns: auto;
+  grid-template-columns: 1fr;
   grid-template-rows: auto;
   grid-gap: 20px;
   padding-top: 10px;
@@ -56,7 +56,7 @@ button.remove {
   background-color: #ff0000;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 400px) {
   main {
     grid-template-columns: 1fr 1fr;
   }
@@ -64,6 +64,6 @@ button.remove {
 
 @media only screen and (min-width: 850px) {
   main {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }
