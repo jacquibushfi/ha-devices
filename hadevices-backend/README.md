@@ -1,24 +1,24 @@
-# README
+Javascript SPA with Rails Backend Project.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Home Assistant Devices App.
 
-Things you may want to cover:
+Welcome to this Javascript SPA project where you can view your Home Assistant devices.  You can create a location for the device, add devices to locations, and remove devices.
 
-* Ruby version
+After installing, run rails s to run locally.
 
-* System dependencies
+This project will create a folder named "ha-devices".  Inside of this folder, you will find the frontend (hadevices-frontend) and backend (hadevices-backend) folders.  
 
-* Configuration
+Installation: $ cd hadevices-backend
+              $ bundle install 
+              $ rails db:migrate
+              $ rails db:seed
+              $ rails s
+              Open the Index.html file in your browser and the application will begin.
 
-* Database creation
+CORS, a security feature,  has been included in the gemfile and setup in config/initializers/cors.rb.  Details on CORS can be found here  https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS .
 
-* Database initialization
+To view the JSON document in a formatted version instead of plain text in Chrome, install the JSON Viewer as an extension.
 
-* How to run the test suite
+Contributing Bug reports and pull requests are welcome on GitHub at https://github.com/jacquibushfi/courses. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+License The project is available as open source under the terms of the MIT License.
