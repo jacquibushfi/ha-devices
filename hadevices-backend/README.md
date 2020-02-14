@@ -4,8 +4,6 @@ Home Assistant Devices App.
 
 Welcome to this Javascript SPA project where you can view your Home Assistant devices.  You can create a location for the device, add devices to locations, and remove devices.
 
-After installing, run rails s to run locally.
-
 This project will create a folder named "ha-devices".  Inside of this folder, you will find the frontend (hadevices-frontend) and backend (hadevices-backend) folders.  
 
 Installation: $ cd hadevices-backend
