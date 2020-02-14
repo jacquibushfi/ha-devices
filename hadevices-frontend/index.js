@@ -54,14 +54,14 @@ function displayCreateDevForm() {
       <form>
       <input type="hidden" id="location_id" name="location_id" value=${data.id}></br>
       <label>Hostname:</label>
-      <input type="text" id="hostname" name="hostname" autofocus></br>
+      <input type="text" id="hostname" name="hostname"></br>
       <label>Ip Address:</label>
       <input type="text" id="ipadd" name="ipadd"></br>
       <input type="submit">
       </form>
       `
       formdiv.innerHTML += html
-      document.getElementById("hostname").focus();
+      const focus = document.getElementById("hostname").focus();
       let form = document.querySelector('form')
       form.addEventListener("submit", createDev)
     })
