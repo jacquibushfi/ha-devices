@@ -8,7 +8,7 @@ class RpdevicesController < ApplicationController
 
   # GET /rpdevices/1
   def show
-    rpdevice = Rpdevice.find(params[:id])
+    rpdevice = Rpdevice.find_by(id: params[:id])
     render json: rpdevice
   end
 
@@ -24,7 +24,7 @@ class RpdevicesController < ApplicationController
 
   # DELETE /rpdevices/1
   def destroy
-    rpdevice = Rpdevice.find(params[:id])
+    rpdevice = Rpdevice.find_by(id: params[:id])
     rpdevice.destroy
   end
 
