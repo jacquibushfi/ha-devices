@@ -10,7 +10,7 @@ function displayCreateLocForm() {
   let html = `
       <form>
       <label>Location:</label>
-      <input type="text" id="name" name="name"></br>
+      <input type="text" id="name" name="name" required></br>
       <input type="submit">
       </form>
       `
@@ -54,7 +54,7 @@ function displayCreateDevForm() {
       <form>
       <input type="hidden" id="location_id" name="location_id" value=${data.id}></br>
       <label>Hostname:</label>
-      <input type="text" id="hostname" name="hostname"></br>
+      <input type="text" id="hostname" name="hostname" required></br>
       <label>Ip Address:</label>
       <input type="text" id="ipadd" name="ipadd"></br>
       <input type="submit">
