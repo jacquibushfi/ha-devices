@@ -178,7 +178,7 @@ class Location {
       rpdeviceLi.append(removeButton);
       locationCardUl.append(rpdeviceLi);
       locationContainer.append(locationCard);
-      rpdeviceLi.addEventListener("click", removeDevice);
+      removeButton.addEventListener("click", removeDevice);
     })
   }
 }

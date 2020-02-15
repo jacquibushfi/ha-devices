@@ -24,7 +24,8 @@ class RpdevicesController < ApplicationController
 
   # DELETE /rpdevices/1
   def destroy
-    @rpdevice.destroy
+    rpdevice = Rpdevice.find(params[:id])
+    rpdevice.destroy
   end
 
   # # PATCH/PUT /rpdevices/1

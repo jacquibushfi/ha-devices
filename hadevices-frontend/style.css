@@ -14,7 +14,7 @@ header h2 {
   margin: 0 auto;
 }
 
-main {
+.location-container {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto;
@@ -27,9 +27,10 @@ div.card {
   background-color: #eeeeee;
   height: 250px;
   width: 400px;
-  box-shadow: 10px 10px grey;
+  box-shadow: 10px 10px 10px grey;
   padding: 10px;
   border-radius: 10px;
+  display: inline-grid;
 }
 
 p {
@@ -49,6 +50,7 @@ button {
   color: #fff;
   background-color: #ff0080;
   border-radius: 10px;
+  width: max-content;
 }
 
 button.remove {
