@@ -4,6 +4,7 @@ window.addEventListener('load', () => {
   getLocations()
 })
 
+
 function displayCreateLocForm() {
   let formdiv = document.querySelector('#device-form')
   formdiv.innerHTML = `<h3>New Location</h3>`
@@ -18,6 +19,48 @@ function displayCreateLocForm() {
   let form = document.querySelector('form')
   form.addEventListener("submit", createLoc)
 }
+
+function displaySortDevices() {
+  event.preventDefault()
+  let locid = event.target.dataset.locationId
+
+  fetch(BASE_URL + `/locations/${locid}/`)
+    .then(resp => resp.json())
+    .then(data => {
+      let sortdev = data.rpdevices.sort(sortDevices)
+      const locationContainer = document.querySelector('#location-container')
+      let locationCardUl = document.getElementById(`location-card-ul-${locid}`)
+      const locationCard = document.getElementById(`#dataset.${locid}`)
+      locationCardUl.innerHTML = "";
+      
+      let rpdevices = sortdev
+
+      rpdevices.forEach(rpdevice => {
+        const rpdeviceLi = document.createElement('li');
+        const removeButton = document.createElement('button');
+        removeButton.innerText = 'Remove';
+        removeButton.className = 'remove';
+        removeButton.dataset.locId = this.id;
+        removeButton.dataset.rpdeviceId = rpdevice.id;
+        rpdeviceLi.innerText = `${rpdevice.hostname} (${rpdevice.ipadd})`;
+        rpdeviceLi.append(removeButton);
+        locationCardUl.append(rpdeviceLi);
+        removeButton.addEventListener("click", removeDevice)
+      })
+    })
+}
+
+function sortDevices(a, b) {
+  if (a.hostname < b.hostname) {
+    return -1;
+  }
+  if (a.hostname > b.hostname) {
+    return 1;
+  }
+  // names must be equal
+  return 0;
+}
+
 
 function createLoc() {
   event.preventDefault()
@@ -157,7 +200,8 @@ class Location {
     locationCard.innerHTML = `
         <p>${this.name}</p>
              <button data-location-id="${this.id}" onclick="displayCreateDevForm()">Add Device</button>
-        <ul id="location-card-ul-${this.id}"> 
+             <button data-location-id="${this.id}" onclick="displaySortDevices()">Sort Devices</button>
+          <ul id="location-card-ul-${this.id}"> 
         </ul >
       `;
     this.rpdevices.length > 0 ? this.renderDevices(locationCard, locationContainer) : locationContainer.append(locationCard)
