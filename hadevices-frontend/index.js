@@ -28,11 +28,9 @@ function displaySortDevices() {
     .then(resp => resp.json())
     .then(data => {
       let sortdev = data.rpdevices.sort(sortDevices)
-      const locationContainer = document.querySelector('#location-container')
       let locationCardUl = document.getElementById(`location-card-ul-${locid}`)
-      const locationCard = document.getElementById(`#dataset.${locid}`)
       locationCardUl.innerHTML = "";
-      
+
       let rpdevices = sortdev
 
       rpdevices.forEach(rpdevice => {
